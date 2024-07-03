@@ -24,7 +24,7 @@ import csv
 
 def cargar_biblioteca():
     try:
-        with open('Biblioteca.csv', 'rt', encoding='utf-8', newline='') as archivo:
+        with open('biblioteca.csv', 'rt', encoding='utf-8', newline='') as archivo:
             lector = csv.reader(archivo, delimiter=';')
             for row in lector:
                 biblioteca[row[0]] = {'Autor/a':row[1], 'Género':row[2]}
@@ -33,7 +33,7 @@ def cargar_biblioteca():
 
 def guardar_biblioteca():
     try:
-        with open('Biblioteca.csv', 'wt', encoding='utf-8', newline='') as archivo:
+        with open('biblioteca.csv', 'wt', encoding='utf-8', newline='') as archivo:
             escritor = csv.writer(archivo, delimiter=';')
             for libro, param in biblioteca.items():
                 escritor.writerow([libro, param['Autor/a'], param['Género']])
