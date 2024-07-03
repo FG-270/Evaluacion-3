@@ -33,19 +33,28 @@ def guardar_biblioteca():
 def registrar_libro(titulo, autor, genero):
     if titulo in biblioteca.keys():
         print('Ya existe ese libro en los registros.')
-        return False
-    biblioteca[titulo] = {'Autor':autor, 'Género':genero}
-    return True
-
-def buscar_libro():
+        return
+    biblioteca[titulo] = {'Autor/a':autor, 'Género':genero}
     return
+
+def buscar_libro_autor(autor):
+    busqueda = []
+    for titulo in biblioteca.keys():
+        if biblioteca[titulo]['Autor/a'].lower() == autor.lower():
+            busqueda.append(titulo)
+    count = 0
+    for libro in busqueda:
+        count += 1
+    if count == 0:
+        return [f'No se encontraron libros escritos por: {autor}']
+    return busqueda
 
 
 # En este diccionario se guardarán todos los libros usando el título como KEY y el VALUE será otro diccionario con los KEYs autor y genero
 biblioteca = {}
 
 # Biblioteca con algunos ejemplos para ir debugeando el código
-biblioteca = {'Papelucho':{'Autor':'Marcela Paz', 'Género':'Literatura infantil'}, 'El Quijote':{'Autor':'Miguel de Cervantes', 'Género':'Novelas de caballería'}, 'Cien años de soledad':{'Autor':'Gabriel García Márquez', 'Género':'Realismo mágico'}}
+biblioteca = {'Papelucho':{'Autor/a':'Marcela Paz', 'Género':'Literatura infantil'}, 'El Quijote':{'Autor/a':'Miguel de Cervantes', 'Género':'Novelas de caballería'}, 'Cien años de soledad':{'Autor/a':'Gabriel García Márquez', 'Género':'Realismo mágico'}, 'El Quijote 2':{'Autor/a':'Miguel de Cervantes', 'Género':'Novelas de caballería'}}
 
 
 
@@ -62,7 +71,11 @@ while True:
         pass
 
     elif menu == '2': # Buscar libro
-        pass
+        autor = input('¿Quién es el/la autor/a del libro que busca?\n\n')
+        
+        for libro in buscar_libro_autor(autor):
+            print(f'  > {libro}')
+        input('\nPresione [Enter] para continuar...')
 
     elif menu == '3': # Listar libros
         print('\nBiblioteca:')
