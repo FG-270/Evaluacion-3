@@ -45,7 +45,7 @@ def buscar_libro():
 biblioteca = {}
 
 # Biblioteca con algunos ejemplos para ir debugeando el código
-biblioteca = {'Papelucho':{'Autor':'Marcela Paz', 'Género':'Literatura infantil'}, 'El Quijote':{'Autor':'Miguel de Cervantes', 'Género':'Novelas de caballería'}, 'Cien años de soledad':{'Autor':'Gabriel García Márquez', 'Género':'Realismo mágico'}
+biblioteca = {'Papelucho':{'Autor':'Marcela Paz', 'Género':'Literatura infantil'}, 'El Quijote':{'Autor':'Miguel de Cervantes', 'Género':'Novelas de caballería'}, 'Cien años de soledad':{'Autor':'Gabriel García Márquez', 'Género':'Realismo mágico'}}
 
 
 
@@ -56,7 +56,26 @@ cargar_biblioteca()
 
 # Menu (loop principal)
 while True:
-    print('Menu:')
+    print('\nMenu:')
+    menu = input()
+    if menu == '1': # Registrar libro
+        pass
+
+    elif menu == '2': # Buscar libro
+        pass
+
+    elif menu == '3': # Listar libros
+        print('\nBiblioteca:')
+        for key in biblioteca.keys():
+            print(f'  > {key}')
+        input('\nPresione [Enter] para continuar...')
+
+    elif menu == '4': # Salir
+        print('Finalizando biblioteca, por favor espere un momento.')
+        break
+
+    else:
+        print('Opción no válida.\nIngrese un número según la opción que desee.')
 
 
 
