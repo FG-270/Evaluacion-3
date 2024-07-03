@@ -13,8 +13,6 @@ recuperando sus datos en algún tipo de archivo de texto. Y además que use al m
 Python.
 
 '''
-
-
 '''
 1) Menu principal con opciones
 2) Registrar libros
@@ -25,14 +23,23 @@ Python.
 import csv
 
 def cargar_biblioteca():
-    pass
+    try:
+        with open('Biblioteca.csv', 'rt', encoding='utf-8', newline='') as archivo:
+            lector = csv.reader(archivo, delimiter=';')
+            for row in lector:
+                biblioteca[row[0]] = {'Autor/a':row[1], 'Género':row[2]}
+    except:
+        print('No se ha podido cargar la Biblioteca correctamente.')
 
 def guardar_biblioteca():
-    with open('Biblioteca.csv', 'wt', encoding='utf-8',newline='') as archivo:
-        escribir = csv.writer(archivo, delimiter=';')
-        for libro, param in biblioteca.items():
-            escribir.writerow([libro, param['Autor/a'], param['Género']])
-        
+    try:
+        with open('Biblioteca.csv', 'wt', encoding='utf-8', newline='') as archivo:
+            escritor = csv.writer(archivo, delimiter=';')
+            for libro, param in biblioteca.items():
+                escritor.writerow([libro, param['Autor/a'], param['Género']])
+        print('Biblioteca se ha guardado con éxito.')
+    except:
+        print('Se ha encontrado un error al intentar guardar la biblioteca.')
 
 def registrar_libro(titulo, autor, genero):
     if titulo in biblioteca.keys():
@@ -56,10 +63,6 @@ def buscar_libro_autor(autor):
 
 # En este diccionario se guardarán todos los libros usando el título como KEY y el VALUE será otro diccionario con los KEYs autor y genero
 biblioteca = {}
-
-# Biblioteca con algunos ejemplos para ir debugeando el código
-biblioteca = {'Papelucho':{'Autor/a':'Marcela Paz', 'Género':'Literatura infantil'}, 'El Quijote':{'Autor/a':'Miguel de Cervantes', 'Género':'Novelas de caballería'}, 'Cien años de soledad':{'Autor/a':'Gabriel García Márquez', 'Género':'Realismo mágico'}, 'El Quijote 2':{'Autor/a':'Miguel de Cervantes', 'Género':'Novelas de caballería'}}
-
 
 
 # Bienvenida e Inicializacion
@@ -102,8 +105,6 @@ while True:
 
     else:
         print('Opción no válida.\nIngrese un número según la opción que desee.')
-
-
 
 
 # Despedida / Cierre
