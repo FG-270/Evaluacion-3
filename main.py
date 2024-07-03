@@ -22,13 +22,17 @@ Python.
 3) BUscar libros por autor
 4) mostrar libros
 '''
-
+import csv
 
 def cargar_biblioteca():
-    return
+    pass
 
 def guardar_biblioteca():
-    return
+    with open('Biblioteca.csv', 'wt', encoding='utf-8',newline='') as archivo:
+        escribir = csv.writer(archivo, delimiter=';')
+        for libro, param in biblioteca.items():
+            escribir.writerow([libro, param['Autor/a'], param['Género']])
+        
 
 def registrar_libro(titulo, autor, genero):
     if titulo in biblioteca.keys():
@@ -59,15 +63,15 @@ biblioteca = {'Papelucho':{'Autor/a':'Marcela Paz', 'Género':'Literatura infant
 
 
 # Bienvenida e Inicializacion
-print('saludo')
+print('¡Bienvenido/a a la Biblioteca!')
 cargar_biblioteca()
 
 
 # Menu (loop principal)
 while True:
-    print('\nMenu:')
+    print('\nBiblioteca:', '1) Registrar libro', '2) Buscar libro por autor', '3) Listar libros', '4) Salir', sep='\n')
     menu = input()
-    
+
     if menu == '1': # Registrar libro
         print('\nPara registrar un libro, ingrese los siguientes datos:')
         reg_titulo = input('Título: ')
@@ -104,4 +108,5 @@ while True:
 
 # Despedida / Cierre
 guardar_biblioteca()
-print('despedida')
+print('\nGracias por usa la Biblioteca.')
+print('¡Hasta luego!')
