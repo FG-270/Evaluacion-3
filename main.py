@@ -33,9 +33,9 @@ def guardar_biblioteca():
 def registrar_libro(titulo, autor, genero):
     if titulo in biblioteca.keys():
         print('Ya existe ese libro en los registros.')
-        return
+        return False
     biblioteca[titulo] = {'Autor/a':autor, 'Género':genero}
-    return
+    return True
 
 def buscar_libro_autor(autor):
     busqueda = []
@@ -67,12 +67,21 @@ cargar_biblioteca()
 while True:
     print('\nMenu:')
     menu = input()
+    
     if menu == '1': # Registrar libro
-        pass
+        print('\nPara registrar un libro, ingrese los siguientes datos:')
+        reg_titulo = input('Título: ')
+        reg_autor = input('Autor/a: ')
+        reg_genero = input('Género: ')
+        if registrar_libro(reg_titulo, reg_autor, reg_genero):
+            print('\nSe ha registrado el libro correctamente.')
+            input('Presione [Enter] para continuar...')
+        else:
+            print('\nNo se ha podido registrar el libro.')
+            input('Presione [Enter] para continuar...')
 
     elif menu == '2': # Buscar libro
         autor = input('¿Quién es el/la autor/a del libro que busca?\n\n')
-        
         for libro in buscar_libro_autor(autor):
             print(f'  > {libro}')
         input('\nPresione [Enter] para continuar...')
