@@ -30,15 +30,37 @@ def cargar_biblioteca():
 def guardar_biblioteca():
     return
 
-def registrar_libro():
-    return
+def registrar_libro(titulo, autor, genero):
+    if titulo in biblioteca.keys():
+        print('Ya existe ese libro en los registros.')
+        return False
+    biblioteca[titulo] = {'Autor':autor, 'Género':genero}
+    return True
 
 def buscar_libro():
     return
 
 
+# En este diccionario se guardarán todos los libros usando el título como KEY y el VALUE será otro diccionario con los KEYs autor y genero
+biblioteca = {}
+
+# Biblioteca con algunos ejemplos para ir debugeando el código
+biblioteca = {'Papelucho':{'Autor':'Marcela Paz', 'Género':'Literatura infantil'}, 'El Quijote':{'Autor':'Miguel de Cervantes', 'Género':'Novelas de caballería'}, 'Cien años de soledad':{'Autor':'Gabriel García Márquez', 'Género':'Realismo mágico'}
 
 
 
+# Bienvenida e Inicializacion
+print('saludo')
+cargar_biblioteca()
+
+
+# Menu (loop principal)
 while True:
     print('Menu:')
+
+
+
+
+# Despedida / Cierre
+guardar_biblioteca()
+print('despedida')
